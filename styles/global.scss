@@ -1,0 +1,344 @@
+body {
+  font-family: "Roboto", Arial, sans-serif;
+  color: #0b1f35;
+  overflow-x: hidden;
+}
+
+.mainImg {
+  width: 650px;
+  height: auto;
+  margin-left: auto;
+  margin-top: 400px;
+  position: relative;
+  right: 50px;
+  z-index: 2;
+
+  @media (max-width: 960px) {
+    transform: scale(0.85) translate(-150px, 200px);
+  }
+}
+.backCircle {
+  z-index: 1;
+  width: 1000px;
+  position: relative;
+  top: -100px;
+  margin-right: -420px;
+  aspect-ratio: 1 / 1;
+  border-width: 10px;
+  border-radius: 2000px;
+  background-color: #0f1633;
+  margin-left: auto;
+  transform: translate(10px, 0px);
+
+  @media (min-width: 1200px) {
+    transform: translateX(-40px);
+  }
+  @media (max-width: 960px) {
+    transform: scale(0.74) translate(150px, -100px);
+  }
+  @media (max-width: 750px) {
+    transform: scale(0.74) translate(160px, -100px);
+  }
+}
+.backCircle2 {
+  margin-top: -250px;
+  @media (max-width: 960px) {
+    transform: scale(0.74) translate(150px, -50px);
+  }
+}
+
+.main {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+
+  @media (min-width: 1320px) {
+    width: 1150px;
+    margin-left: 0%;
+  }
+  @media (max-width: 960px) {
+    width: 80%;
+  }
+}
+
+.headerMain {
+  z-index: 2;
+  width: 100%;
+  position: relative;
+  top: 30px;
+  display: flex;
+
+  .headerMainTitle {
+    strong {
+      font-size: 23px;
+      text-align: "center";
+    }
+    div {
+      font-weight: 1px;
+      font-size: 12px;
+    }
+  }
+
+  .headerMainRight {
+    flex-grow: 1;
+    float: right;
+    display: flex;
+    justify-content: flex-end;
+    color: white;
+    font-size: 12px;
+    height: 25px;
+    margin-top: 7px;
+    @media (min-width: 1200px) {
+      height: 30px;
+    }
+
+    img {
+      width: 17px;
+      height: 17px;
+      filter: brightness(0) invert(1);
+      position: relative;
+      top: 4px;
+      margin-left: 12px;
+      cursor: pointer;
+
+      @media (min-width: 1200px) {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    .headerMainRightSail {
+      border: 1px solid white;
+      border-radius: 5px;
+      background-color: #0b1f35;
+      font-weight: 500;
+      width: 160px;
+      text-align: center;
+      padding-top: 4px;
+      margin-left: 12px;
+      cursor: pointer;
+
+      @media (min-width: 1200px) {
+        width: 200px;
+        font-size: 16px;
+      }
+    }
+    .headerMainRightConn {
+      border: 1px solid #ef3124;
+      border-radius: 5px;
+      width: 120px;
+      background-color: #ef3124;
+      font-weight: 500;
+      text-align: center;
+      padding-top: 4px;
+      margin-left: 12px;
+      cursor: pointer;
+
+      @media (min-width: 1200px) {
+        width: 140px;
+        font-size: 16px;
+      }
+    }
+  }
+}
+.headerMain2 {
+  position: relative;
+  top: -150px;
+}
+
+.block1 {
+  width: 45%;
+  position: absolute;
+  top: 250px;
+
+  strong {
+    font-size: 65px;
+
+    @media (max-width: 1200px) {
+      font-size: 35px;
+    }
+  }
+  div {
+    margin-top: 20px;
+    width: 60%;
+    line-height: 1.5;
+
+    @media (max-width: 960px) {
+      width: 90%;
+    }
+  }
+}
+.block2 {
+  position: absolute;
+  top: 1010px;
+}
+
+.block1Cities {
+  display: flex;
+  position: absolute;
+  top: 800px;
+  font-weight: 500;
+
+  @media (max-width: 960px) {
+    top: 730px;
+  }
+  @media (max-width: 600px) {
+    display: none;
+  }
+
+  :first-child {
+    margin-left: 0px;
+    border: 1px solid red;
+    background-color: red;
+    color: white;
+  }
+  div {
+    margin-left: 6px;
+    border-radius: 20px;
+    border: 1px solid black;
+    background-color: white;
+    font-size: 13px;
+    padding: 7px;
+  }
+}
+.block2Cities {
+  top: 1550px;
+}
+
+.withWork {
+  font-size: 27px;
+  font-weight: 500;
+  color: black;
+  margin-top: -100px;
+}
+
+.withWorkCards {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+  :nth-child(odd) {
+    z-index: 2;
+  }
+  :nth-child(even) {
+    z-index: 1;
+  }
+  @media (max-width: 960px) {
+    width: 440px;
+    justify-content: space-between;
+    display: grid;
+    gap: 15px;
+    grid-template-columns: 120px 150px;
+    grid-template-rows: 120px 120px;
+    margin-left: 50%;
+    position: relative;
+    left: -270px;
+  }
+  @media (max-width: 960px) {
+    width: 440px;
+    justify-content: space-between;
+    display: grid;
+    gap: 15px;
+    grid-template-columns: 280px 250px;
+    grid-template-rows: 120px 120px;
+    margin-left: 50%;
+    position: relative;
+    left: -270px;
+  }
+  @media (max-width: 600px) {
+    width: 350px;
+    justify-content: space-between;
+    display: grid;
+    gap: 15px;
+    grid-template-columns: 200px 200px;
+    grid-template-rows: 140px 140px;
+    margin-left: 50%;
+    position: relative;
+    left: -210px;
+  }
+  @media (max-width: 444px) {
+    width: 350px;
+    justify-content: space-between;
+    display: grid;
+    gap: 15px;
+    grid-template-columns: 200px;
+    grid-template-rows: 140px 100px 100px 100px;
+    margin-left: 50%;
+    position: relative;
+    left: -100px;
+  }
+}
+
+.withWorkCard {
+  width: 260px;
+  padding: 20px 0px 0px 20px;
+  border-radius: 10px;
+  box-shadow: 0px 10px 10px LightGrey;
+  display: flex;
+  background-color: white;
+
+  .withWorkCardText {
+    width: 190px;
+
+    .withWorkCardTextTitle {
+      font-weight: 500;
+    }
+    .withWorkCardTextText {
+      font-weight: 400;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  }
+  .withWorkCardImg1 {
+    width: 60px;
+    height: 130px;
+  }
+  .withWorkCardImg2 {
+    display: none;
+  }
+
+  @media (max-width: 1200px) {
+    box-shadow: 0px 0px 0px LightGrey;
+    border-radius: 0px;
+    border-right: 1px solid LightGrey;
+
+    .withWorkCardText {
+      width: 80%;
+
+      .withWorkCardTextTitle {
+        font-weight: 500;
+        font-size: 12px;
+      }
+      .withWorkCardTextText {
+        font-weight: 400;
+        font-size: 12px;
+        margin-top: 10px;
+      }
+    }
+    .withWorkCardImg1 {
+      display: none;
+    }
+  }
+  @media (max-width: 960px) {
+    background-color: #ededed;
+    border-radius: 10px;
+
+    .withWorkCardImg2 {
+      display: inline-block;
+      position: relative;
+      top: -30px;
+      width: 105px;
+      height: 130px;
+    }
+  }
+  @media (max-width: 600px) {
+    padding-top: 10px;
+    width: 180px;
+
+    .withWorkCardImg2 {
+      display: none;
+    }
+  }
+}
