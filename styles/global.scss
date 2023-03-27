@@ -3,6 +3,10 @@ body {
   color: #0b1f35;
   overflow-x: hidden;
 }
+.intl-tel-input .country-list {
+  background-color: black;
+  color: #000;
+}
 
 .mainImg {
   width: 650px;
@@ -13,13 +17,19 @@ body {
   right: 50px;
   z-index: 2;
 
-  @media (max-width: 960px) {
+  @media (max-width: 960px) and (pointer: none) {
     transform: scale(0.85) translate(-150px, 200px);
+  }
+  @media only screen and (pointer: coarse) {
+    width: 45%;
+    right: -480px;
+    margin-left: 0px;
   }
 }
 .backCircle {
   z-index: 1;
   width: 1000px;
+  max-width: 1000px;
   position: relative;
   top: -100px;
   margin-right: -420px;
@@ -29,6 +39,9 @@ body {
   background-color: #0f1633;
   margin-left: auto;
   transform: translate(10px, 0px);
+  div {
+    display: none;
+  }
 
   @media (min-width: 1200px) {
     transform: translateX(-40px);
@@ -39,11 +52,49 @@ body {
   @media (max-width: 750px) {
     transform: scale(0.74) translate(160px, -100px);
   }
-}
-.backCircle2 {
-  margin-top: -250px;
-  @media (max-width: 960px) {
-    transform: scale(0.74) translate(150px, -50px);
+  @media screen and (pointer: coarse) {
+    aspect-ratio: 1/1;
+    transform: scale(2.1) translate(-470px, 220px);
+
+    div {
+      display: block;
+      color: white;
+    }
+    .headerMainLogo {
+      font-size: 2vw;
+      position: absolute;
+      right: 29vw;
+      top: 100px;
+      div {
+        font-weight: 300;
+        font-size: 1.5vw;
+      }
+    }
+    .backCircleTitle {
+      font-size: 4.5vw;
+      font-weight: 500;
+      position: absolute;
+      right: 12vw;
+      top: 240px;
+    }
+    .backCircleText {
+      font-size: 1.5vw;
+      position: absolute;
+      right: 17vw;
+      top: 740px;
+      line-height: 1.5;
+    }
+    .backCircleButton {
+      font-size: 1.4vw;
+      position: absolute;
+      right: 33vw;
+      top: 840px;
+      line-height: 1.5;
+      border-radius: 5px;
+      background-color: #ef3124;
+      font-weight: 500;
+      padding: 5px 15px;
+    }
   }
 }
 
@@ -53,12 +104,12 @@ body {
   transform: translateX(-50%);
   width: 95%;
 
-  @media (min-width: 1320px) {
+  @media (min-width: 1220px) {
     width: 1150px;
     margin-left: 0%;
   }
   @media (max-width: 960px) {
-    width: 80%;
+    width: 95%;
   }
 }
 
@@ -78,6 +129,9 @@ body {
       font-weight: 1px;
       font-size: 12px;
     }
+    @media screen and (pointer: coarse) {
+      display: none;
+    }
   }
 
   .headerMainRight {
@@ -91,6 +145,9 @@ body {
     margin-top: 7px;
     @media (min-width: 1200px) {
       height: 30px;
+    }
+    @media screen and (pointer: coarse) {
+      display: none;
     }
 
     img {
@@ -141,10 +198,6 @@ body {
     }
   }
 }
-.headerMain2 {
-  position: relative;
-  top: -150px;
-}
 
 .block1 {
   width: 45%;
@@ -167,10 +220,6 @@ body {
       width: 90%;
     }
   }
-}
-.block2 {
-  position: absolute;
-  top: 1010px;
 }
 
 .block1Cities {
@@ -201,15 +250,20 @@ body {
     padding: 7px;
   }
 }
-.block2Cities {
-  top: 1550px;
-}
 
 .withWork {
   font-size: 27px;
   font-weight: 500;
   color: black;
   margin-top: -100px;
+  margin-bottom: 40px;
+
+  @media screen and (pointer: coarse) {
+    margin-top: 1000px;
+    font-size: 3.5vh;
+    margin-left: 4vw;
+    margin-right: 4vw;
+  }
 }
 
 .withWorkCards {
@@ -258,16 +312,11 @@ body {
     position: relative;
     left: -210px;
   }
-  @media (max-width: 444px) {
-    width: 350px;
-    justify-content: space-between;
-    display: grid;
-    gap: 15px;
-    grid-template-columns: 200px;
-    grid-template-rows: 140px 100px 100px 100px;
-    margin-left: 50%;
-    position: relative;
-    left: -100px;
+  @media (max-width: 445px) {
+    display: none;
+  }
+  @media screen and (pointer: coarse) {
+    display: none;
   }
 }
 
@@ -340,5 +389,423 @@ body {
     .withWorkCardImg2 {
       display: none;
     }
+  }
+}
+
+.withWorkMobCards {
+  @media (max-width: 445px) {
+    display: block;
+  }
+  @media (hover: hover) and (min-width: 445px) {
+    display: none;
+  }
+}
+.withWorkMobCard1 {
+  width: 33vw;
+  background-color: #ededed;
+  border-radius: 35px;
+  padding: 4vw;
+  padding-bottom: 0px;
+  margin-left: 4vw;
+}
+.withWorkMobCardTitle {
+  font-size: 3vw;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.withWorkMobCardText {
+  margin-top: 10px;
+  font-size: 3vw;
+  line-height: 1.4;
+}
+.withWorkMobCardImage1 {
+  width: 20vw;
+  position: relative;
+  margin-top: -35px;
+  left: 8vw;
+  height: auto;
+}
+
+.withWorkMobCard2 {
+  width: 33vw;
+  height: 24vw;
+  background-color: #ededed;
+  border-radius: 35px;
+  padding: 4vw;
+  padding-bottom: 0px;
+  margin-left: 4vw;
+}
+.withWorkMobCard3 {
+  margin-top: 3vw;
+}
+
+.withWorkMobCard4 {
+  width: 79vw;
+  height: 24vw;
+  background-color: #ededed;
+  border-radius: 35px;
+  padding: 4vw;
+  padding-bottom: 0px;
+  margin-left: 4vw;
+  margin-top: 4vw;
+  display: flex;
+}
+.withWorkMobCardImage2 {
+  width: 20vw;
+  position: relative;
+  margin-top: -15px;
+  height: auto;
+}
+
+.realtySailBlock {
+  display: flex;
+  justify-content: space-between;
+  @media (max-width: 1130px) {
+    display: block;
+  }
+}
+.realtySail {
+  margin-top: 50px;
+  font-size: 27px;
+  font-weight: 500;
+  color: black;
+  margin-bottom: 40px;
+
+  @media screen and (pointer: coarse) {
+    margin-top: 130px;
+    font-size: 3.5vh;
+    margin-left: 4vw;
+    margin-right: 4vw;
+  }
+  @media (max-width: 1130px) {
+    display: none;
+  }
+}
+.realtySailCards {
+  width: 500px;
+  display: grid;
+  grid-template-columns: repeat(2, 250px);
+  grid-template-rows: repeat(2, 190px);
+  gap: 30px;
+  @media (max-width: 1130px) {
+    display: none;
+  }
+
+  .realtySailCard {
+    box-shadow: 0px 0px 15px LightGrey;
+    border-radius: 20px;
+    padding: 20px;
+
+    .realtySailCardImage {
+      width: 30px;
+      height: auto;
+    }
+    .realtySailCardTitle {
+      font-weight: 600;
+      margin: 10px 0px;
+    }
+    .realtySailCardText {
+      line-height: 1.6;
+    }
+  }
+}
+
+.calc {
+  width: 350px;
+  background-color: #0f1633;
+  border-radius: 20px;
+  margin-left: 90px;
+  color: white;
+  height: 600px;
+  padding: 0px 75px;
+  flex-shrink: 0;
+  font-size: 15px;
+  @media (max-width: 1130px) {
+    width: 350px;
+    padding-top: 10px;
+    margin-top: 100px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: 0px;
+  }
+  @media (max-width: 1130px) and (pointer: coarse) {
+    transform: scale(1.39) translate(-35%, 100px);
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  .calcTitle {
+    font-size: 30px;
+    text-align: center;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .calcInp {
+    border: 1px solid white;
+    border-radius: 6px;
+    margin-top: 10px;
+    width: calc(100% - 20px);
+    height: 50px;
+    font-size: 16px;
+    padding-left: 20px;
+  }
+  .calcTel {
+    border: 1px solid white;
+    border-radius: 6px;
+    width: 139%;
+    height: 55px;
+    font-size: 16px;
+    padding-left: 20px;
+    @media (max-width: 1130px) and (pointer: coarse) {
+      width: 178%;
+    }
+  }
+  .calcSelect {
+    border-radius: 6px;
+    margin-top: 10px;
+    width: calc(100% + 6px);
+    height: 50px;
+    font-size: 16px;
+    padding-left: 20px;
+
+    :focus {
+      outline: none;
+    }
+  }
+  .calcSqr {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  .calcRange {
+    margin-top: 40px;
+    width: 95%;
+    height: 50px;
+    font-size: 16px;
+    padding-left: 20px;
+    background: red;
+    -webkit-appearance: none;
+    border: solid 1px red;
+    border-radius: 8px;
+    height: 7px;
+    outline: none;
+    transition: background 450ms ease-in;
+    background: red;
+  }
+  .calcButton {
+    border: 1px solid red;
+    background-color: red;
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    border-radius: 6px;
+    margin-top: 0px;
+    width: calc(100% + 6px);
+    height: 50px;
+    font-size: 16px;
+    padding-left: 20px;
+  }
+  .calcWarning {
+    margin-top: 30px;
+    text-align: center;
+  }
+}
+
+.services {
+  font-size: 30px;
+  margin-top: 60px;
+  font-weight: 500;
+}
+
+.servicesCards {
+  width: 100%;
+  display: grid;
+  margin-top: 40px;
+  grid-template-columns: repeat(4, 265px);
+  grid-template-rows: repeat(1, 190px);
+  gap: 30px;
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(2, 265px);
+    grid-template-rows: repeat(2, 190px);
+    justify-content: center;
+  }
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(2, 265px);
+    grid-template-rows: repeat(2, 190px);
+    justify-content: center;
+    transform: scale(0.8);
+  }
+  @media (max-width: 470px) {
+    height: 190px;
+    padding: 30px 0px;
+    padding-left: 380px;
+    position: relative;
+    left: -100px;
+    grid-template-columns: repeat(4, minmax(265px, 1fr));
+    grid-template-rows: repeat(1, 190px);
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-direction: horizontal;
+  }
+  @media (max-width: 1130px) and (pointer: coarse) {
+    padding: 30px 0px;
+    height: 300px;
+    grid-template-columns: repeat(4, minmax(265px, 1fr));
+    grid-template-rows: repeat(1, 190px);
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-direction: horizontal;
+  }
+}
+
+.servicesCard {
+  border-radius: 10px;
+  padding: 10px 30px;
+  box-shadow: 0px 0px 15px LightGrey;
+  background-color: white;
+  @media (max-width: 1130px) and (pointer: coarse) {
+    transform: scale(1.8);
+    position: relative;
+    left: 50px;
+    top: 100px;
+  }
+
+  .servicesCardImage {
+    margin-top: 15px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 60px;
+    width: auto;
+  }
+  .servicesCardTitle {
+    margin-top: 20px;
+    font-weight: 500;
+  }
+  .servicesCardText {
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+}
+
+.compare {
+  font-size: 27px;
+  font-weight: 500;
+  color: black;
+  margin-top: 50px;
+  margin-bottom: 40px;
+
+  @media screen and (pointer: coarse) {
+    margin-top: 1000px;
+    font-size: 3.5vh;
+    margin-left: 4vw;
+    margin-right: 4vw;
+  }
+}
+
+.compareButtons {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid red;
+  overflow: hidden;
+
+  .compareButton {
+    width: 33.3333%;
+    font-size: 25px;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid red;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+}
+
+.compareCards {
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: 1215px) {
+    transform: scale(0.8);
+  }
+  @media (max-width: 970px) {
+    overflow-x: scroll;
+    padding: 40px 0px;
+    padding-left: 500px;
+    transform: scale(1);
+  }
+  @media screen and (pointer: coarse) {
+    padding: 0px 0px;
+    transform: scale(2) translateX(25%);
+    width: 50%;
+    margin-top: 450px;
+  }
+}
+.compareCard:first-child {
+  background-color: #0b1f35;
+  color: white;
+}
+.compareCardFlexBlock:first-child {
+  background-color: #7389de;
+}
+
+.compareCard {
+  width: 300px;
+  margin: 0px 10px;
+  color: black;
+  border-radius: 15px;
+  padding: 0px 35px;
+  box-shadow: 0px 0px 18px LightGrey;
+  background-color: white;
+  flex-shrink: 0;
+
+  .compareCardTitle {
+    font-size: 30px;
+    font-weight: 600;
+    margin: 40px 0px;
+  }
+  .compareCardSubtitle {
+    margin-top: 30px;
+    font-size: 14px;
+  }
+  .compareCardText {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  .compareCardFlexBlock {
+    display: flex;
+    align-items: center;
+    height: 40px;
+  }
+  .compareCardCircle {
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    background-color: red;
+    flex-shrink: 0;
+  }
+  .compareCardCircleText {
+    margin-left: 20px;
+  }
+  .compareCardSubtext {
+    font-size: 13px;
+    color: #8c94a8;
+    line-height: 1.5;
+  }
+  .compareCardButton {
+    border-radius: 5px;
+    background-color: #ef3124;
+    color: white;
+    text-align: center;
+    margin: 30px auto;
+    width: 200px;
+    padding: 10px;
+    font-weight: 500;
   }
 }
