@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react"
 import Button from "@mui/material/Button"
-import { Typography } from "@mui/material"
+import { Typography, FormControl } from "@mui/material"
 import TextField from "@mui/material/TextField"
 import Dialog from "@mui/material/Dialog"
 import DialogActions from "@mui/material/DialogActions"
 import DialogContent from "@mui/material/DialogContent"
 import DialogTitle from "@mui/material/DialogTitle"
+import MenuItem from "@mui/material/MenuItem"
+import Select from "@mui/material/Select"
 import intlTelInput from "intl-tel-input"
 import $ from "jquery"
 import "intl-tel-input/build/css/intlTelInput.css"
@@ -36,6 +38,7 @@ export default function Home() {
   const [selectedServiceCard, setSelectedServiceCard] = useState(0)
   const [mobile, setMobile] = useState(false)
   const [openedQuestForm, setOpenedQuestForm] = useState(false)
+  const [questFormType, setQuestFormType] = useState("Квартира")
   useEffect(() => {
     checkGeoFunc()
     //check geo
@@ -52,7 +55,7 @@ export default function Home() {
     setMobile(isMobile)
     setSelectedServiceCard(isMobile ? 0 : -1)
     //check is user from phone
-    /*setTimeout(() => {
+    /*(setTimeout(() => {
       setOpenedQuestForm(true)
     }, 1000)*/
   }, [])
@@ -74,6 +77,49 @@ export default function Home() {
         />
         <link rel="icon" type="image/png" href="/favicon.png" />
       </Head>
+
+      <Dialog
+        open={openedQuestForm}
+        onClose={() => {
+          setOpenedQuestForm(false)
+        }}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle style={{ textAlign: "center" }}>
+          Остались вопросы?
+        </DialogTitle>
+        <DialogContent>
+          <Typography gutterBottom style={{ textAlign: "center" }}>
+            Отправьте форму или позвоните нам и вы узнайте как продать квартиру
+            безопасно и выгодно, как быстрее подготовить документы для продажи и
+            на какие цены можно ориентироваться.
+          </Typography>
+          <form noValidate autoComplete="off">
+            <DialogTitle>Тип недвижимости</DialogTitle>
+            <Select
+              fullWidth
+              value={questFormType}
+              label="Квартира"
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+            >
+              <MenuItem>Квартира</MenuItem>
+              <MenuItem>Комната</MenuItem>
+              <MenuItem>Доля</MenuItem>
+              <MenuItem>Дом</MenuItem>
+              <MenuItem>Земельный участок</MenuItem>
+              <MenuItem>Земельный участок</MenuItem>
+            </Select>
+            <TextField id="type" label="Тип недвижимости" fullWidth />
+            <TextField id="address" label="Адрес" fullWidth />
+            <TextField id="phone-number" label="Номер телефона" fullWidth />
+          </form>
+        </DialogContent>
+        <DialogActions>
+          <Button color="primary">Отмена</Button>
+          <Button color="primary">Отправить</Button>
+        </DialogActions>
+      </Dialog>
 
       <header className="headerMain">
         <div className="headerMainTitle">
