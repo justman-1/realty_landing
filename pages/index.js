@@ -75,34 +75,6 @@ export default function Home() {
         <link rel="icon" type="image/png" href="/favicon.png" />
       </Head>
 
-      <Dialog
-        open={openedQuestForm}
-        onClose={() => {
-          setOpenedQuestForm(false)
-        }}
-        aria-labelledby="form-dialog-title"
-      >
-        <DialogTitle id="form-dialog-title" style={{ textAlign: "center" }}>
-          Остались вопросы?
-        </DialogTitle>
-        <DialogContent>
-          <Typography gutterBottom style={{ textAlign: "center" }}>
-            Отправьте форму или позвоните нам и вы узнайте как продать квартиру
-            безопасно и выгодно, как быстрее подготовить документы для продажи и
-            на какие цены можно ориентироваться.
-          </Typography>
-          <form noValidate autoComplete="off">
-            <TextField id="type" label="Тип недвижимости" />
-            <TextField id="address" label="Адрес" />
-            <TextField id="phone-number" label="Номер телефона" />
-          </form>
-        </DialogContent>
-        <DialogActions>
-          <Button color="primary">Отмена</Button>
-          <Button color="primary">Отправить</Button>
-        </DialogActions>
-      </Dialog>
-
       <header className="headerMain">
         <div className="headerMainTitle">
           <strong>InvestReal</strong>
