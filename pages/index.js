@@ -55,9 +55,9 @@ export default function Home() {
     setMobile(isMobile)
     setSelectedServiceCard(isMobile ? 0 : -1)
     //check is user from phone
-    /*(setTimeout(() => {
+    setTimeout(() => {
       setOpenedQuestForm(true)
-    }, 1000)*/
+    }, 1000)
   }, [])
   async function checkGeoFunc() {
     const geoLocation = await checkGeo()
