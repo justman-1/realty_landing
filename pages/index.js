@@ -104,7 +104,6 @@ export default function Home() {
     slideValue.style.left = value + "%"
     slideValue.style.transform = "translateX(-75%) scale(1)"
   }
-  handle
   return (
     <>
       <div className="main">
@@ -118,7 +117,6 @@ export default function Home() {
           />
           <link rel="icon" type="image/png" href="/favicon.png" />
         </Head>
-
         <Dialog
           open={openedQuestForm}
           onClose={() => {
@@ -206,7 +204,6 @@ export default function Home() {
             </div>
           </DialogContent>
         </Dialog>
-
         <header className="headerMain">
           <div className="headerMainTitle">
             <strong>InvestReal</strong>
@@ -278,7 +275,6 @@ export default function Home() {
             <div className="backCircleButton">СВЯЗАТЬСЯ</div>
           </div>
         </div>
-
         <div className="withWork">С какими объектами мы работаем</div>
         <div className="withWorkCards">
           <div className="withWorkCard">
@@ -325,7 +321,6 @@ export default function Home() {
             <Image src={man1Img} className="withWorkCardImg1" alt="" />
           </div>
         </div>
-
         <div className="withWorkMobCards">
           <div style={{ display: "flex" }}>
             <div className="withWorkMobCard1">
@@ -364,7 +359,6 @@ export default function Home() {
             <Image src={man3Img} className="withWorkMobCardImage2" alt="" />
           </div>
         </div>
-
         <div className="realtySailBlock">
           <div ref={realtySailRef}>
             <div className="realtySail">
@@ -457,7 +451,6 @@ export default function Home() {
             </div>
           </form>
         </div>
-
         <div className="services">Услуги компании</div>
         <div className="servicesCards">
           <div className="servicesCard">
@@ -489,7 +482,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
         <div className="compare">
           Сравните наши услуги и выберите оптимальное решение
         </div>
@@ -725,7 +717,6 @@ export default function Home() {
           </div>
         </div>
         <div className="aboutFeedbacksButton">ВСЕ ОТЗЫВЫ</div>
-
         <div className="contacts">Контакты</div>
         <div className="contactsBl">
           <div className="contactReq">
