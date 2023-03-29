@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react"
 import Button from "@mui/material/Button"
+import Link from "next/link"
 import { Typography, FormControl } from "@mui/material"
 import TextField from "@mui/material/TextField"
 import Dialog from "@mui/material/Dialog"
@@ -228,7 +229,7 @@ export default function Home() {
               РАССЧИТАТЬ ЦЕНУ
             </div>
             <div className="headerMainRightConn">
-              <a href="tel: +79113007705">СВЯЗАТЬСЯ</a>
+              <Link href="tel: +79113007705">СВЯЗАТЬСЯ</Link>
             </div>
           </div>
         </header>
@@ -752,9 +753,9 @@ export default function Home() {
           <div className="contactInfo">
             <div className="contactInfoCard">
               <div className="contactInfoCardTitle">Номер телефона:</div>
-              <a href="tel: +79113007705">
+              <Link href="tel: +79113007705">
                 <div className="contactInfoCardText">+7(8152)707-705</div>
-              </a>
+              </Link>
             </div>
             <div className="contactInfoCard">
               <div className="contactInfoCardTitle">Адрес:</div>

@@ -1,5 +1,6 @@
 import sendImg from "../public/send.png"
 import Image from "next/image"
+import Link from "next/link"
 
 export default function Footer(props) {
   function scrollTo(ref) {
@@ -12,7 +13,7 @@ export default function Footer(props) {
           <div className="footerCol">
             <div className="footerColTitle">УСЛУГИ</div>
             <div className="footerColText">
-              <a href="/">Выкуп недвижимости</a>
+              <Link href="/">Выкуп недвижимости</Link>
             </div>
             <div
               className="footerColText"
