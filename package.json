@@ -19,7 +19,9 @@
     "next": "13.2.4",
     "node-sass": "^7.0.3",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-international-telephone-input": "^4.73.6-r01",
+    "react-phone-number-input": "^3.2.19"
   },
   "devDependencies": {
     "sass": "^1.59.3"

@@ -7,6 +7,13 @@ body {
   background-color: black;
   color: #000;
 }
+input {
+  outline: none;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
 
 .mainImg {
   width: 650px;
@@ -63,7 +70,7 @@ body {
     .headerMainLogo {
       font-size: 2.8vw;
       position: absolute;
-      right: 47vw;
+      right: 52vw;
       top: 100px;
       div {
         font-weight: 300;
@@ -74,20 +81,20 @@ body {
       font-size: 6.9vw;
       font-weight: 500;
       position: absolute;
-      right: 15vw;
+      right: 20vw;
       top: 240px;
     }
     .backCircleText {
       font-size: 2.3vw;
       position: absolute;
-      right: 23vw;
+      right: 28vw;
       top: 640px;
       line-height: 1.5;
     }
     .backCircleButton {
       font-size: 2.3vw;
       position: absolute;
-      right: 44vw;
+      right: 49vw;
       top: 700px;
       line-height: 1.5;
       border-radius: 5px;
@@ -99,7 +106,7 @@ body {
 }
 
 .main {
-  position: absolute;
+  position: relative;
   left: 50%;
   transform: translateX(-50%);
   width: 95%;
@@ -110,6 +117,9 @@ body {
   }
   @media (max-width: 960px) {
     width: 95%;
+  }
+  @media screen and (pointer: coarse) {
+    left: 55%;
   }
 }
 
@@ -395,8 +405,8 @@ body {
 .withWorkMobCards {
   @media (max-width: 445px) {
     display: block;
-    transform: scale(1.3) translateX(15%);
-    margin-top: 100px;
+    transform: scale(1.45) translateX(20%);
+    margin-top: 120px;
   }
   @media (hover: hover) and (min-width: 445px) {
     display: none;
@@ -478,9 +488,8 @@ body {
     font-size: 3.5vh;
     margin-left: 4vw;
     margin-right: 4vw;
-  }
-  @media (max-width: 1130px) {
-    display: none;
+    position: relative;
+    top: 700px;
   }
 }
 .realtySailCards {
@@ -489,8 +498,12 @@ body {
   grid-template-columns: repeat(2, 250px);
   grid-template-rows: repeat(2, 190px);
   gap: 30px;
-  @media (max-width: 1130px) {
-    display: none;
+  @media screen and (pointer: coarse) {
+    font-size: 15px;
+    margin-left: 4vw;
+    margin-right: 4vw;
+    position: relative;
+    top: 700px;
   }
 
   .realtySailCard {
@@ -510,6 +523,20 @@ body {
       line-height: 1.6;
     }
   }
+}
+
+.calcRangeValue span::after {
+  position: absolute;
+  content: "";
+  height: 45px;
+  width: 45px;
+  left: 50%;
+  background: darkblue;
+  transform: translateX(-50%) rotateZ(45deg);
+  line-height: 55px;
+  z-index: -1;
+  border-radius: 50% 50% 0 50%;
+  border: 3px solid white;
 }
 
 .calc {
@@ -532,7 +559,7 @@ body {
     margin-left: 0px;
   }
   @media (max-width: 1130px) and (pointer: coarse) {
-    transform: scale(1.15) translate(-28%, 100px);
+    transform: scale(1.15) translate(-24%, -590px);
   }
 
   input:focus {
@@ -555,17 +582,6 @@ body {
     font-size: 16px;
     padding-left: 20px;
   }
-  .calcTel {
-    border: 1px solid white;
-    border-radius: 6px;
-    width: 139%;
-    height: 55px;
-    font-size: 16px;
-    padding-left: 20px;
-    @media (max-width: 1130px) and (pointer: coarse) {
-      width: 139%;
-    }
-  }
   .calcSelect {
     border-radius: 6px;
     margin-top: 10px;
@@ -582,20 +598,25 @@ body {
     font-size: 16px;
     margin-top: 10px;
   }
-  .calcRange {
-    margin-top: 40px;
+  .calcRangeValues {
+    width: 100%;
+    font-size: 13px;
+    margin: 15px 0px 5px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .calcTel {
+    border: 1px solid white;
+    background-color: white;
+    input {
+      font-size: 17px;
+      border: 0px solid white;
+    }
+    border-radius: 6px;
     width: 95%;
-    height: 50px;
+    height: 55px;
     font-size: 16px;
     padding-left: 20px;
-    background: red;
-    -webkit-appearance: none;
-    border: solid 1px red;
-    border-radius: 8px;
-    height: 7px;
-    outline: none;
-    transition: background 450ms ease-in;
-    background: red;
   }
   .calcButton {
     border: 1px solid red;
@@ -611,9 +632,84 @@ body {
     padding-left: 20px;
   }
   .calcWarning {
-    margin-top: 30px;
+    margin-top: 25px;
     text-align: center;
   }
+}
+.calcRangeBl {
+  margin-top: 50px;
+  .calcRangeValue {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      position: absolute;
+      height: 35px;
+      width: 35px;
+      color: black;
+      font-size: 14px;
+      font-weight: 500;
+      top: -50px;
+      left: 60%;
+      transform: translateX(-75%) scale(1);
+      transform-origin: bottom;
+      transition: transform 0.3s ease-in-out;
+      line-height: 40px;
+      z-index: 5;
+    }
+  }
+  .calcRangeField {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    input {
+      -webkit-appearance: none;
+      height: 3px;
+      width: 100%;
+      background: red;
+      border-radius: 5px;
+      outline: none;
+      border: none;
+    }
+  }
+}
+.calcRangeValue span::after {
+  position: absolute;
+  content: "";
+  height: 35px;
+  width: 25px;
+  margin-left: -65%;
+  background: white;
+  color: black;
+  line-height: 55px;
+  z-index: -1;
+  border-radius: 5px;
+  transform: rotate(90deg);
+  border: 3px solid white;
+}
+.showRangeValue {
+  transform: translateX(-50%) scale(1);
+}
+.calcRangeField input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 20px;
+  width: 20px;
+  background: red;
+  border-radius: 50%;
+}
+.calcRangeField input::-moz-range-thumb {
+  -moz-appearance: none;
+  border: none;
+  height: 30px;
+  width: 30px;
+  background: red;
+  border-radius: 50%;
 }
 
 .services {
@@ -654,12 +750,12 @@ body {
   }
   @media (max-width: 1130px) and (pointer: coarse) {
     padding: 30px 0px;
-    height: 300px;
-    grid-template-columns: repeat(4, minmax(265px, 1fr));
-    grid-template-rows: repeat(1, 190px);
-    overflow-x: scroll;
-    overflow-y: hidden;
-    scroll-direction: horizontal;
+    height: 1650px;
+    width: 700px;
+    gap: 30px;
+    grid-template-columns: repeat(1, 265px);
+    grid-template-rows: repeat(4, 390px);
+    margin-top: -50px;
   }
 }
 
@@ -672,7 +768,8 @@ body {
     transform: scale(1.8);
     position: relative;
     left: 50px;
-    top: 100px;
+    height: 190px;
+    margin-top: 80px;
   }
 
   .servicesCardImage {
@@ -702,10 +799,11 @@ body {
   margin-bottom: 40px;
 
   @media screen and (pointer: coarse) {
-    margin-top: 1000px;
+    margin-top: -100px;
     font-size: 3.5vh;
     margin-left: 4vw;
     margin-right: 4vw;
+    width: 150%;
   }
 }
 
@@ -716,6 +814,9 @@ body {
   border-radius: 10px;
   border: 1px solid red;
   overflow: hidden;
+  @media screen and (pointer: coarse) {
+    width: 155%;
+  }
 
   .compareButton {
     width: 33.3333%;
@@ -742,10 +843,11 @@ body {
     transform: scale(1);
   }
   @media screen and (pointer: coarse) {
+    overflow-x: visible;
     padding: 0px 0px;
-    transform: scale(2) translateX(25%);
-    width: 50%;
-    margin-top: 450px;
+    transform: scale(1.6) translateX(19%);
+    width: 100%;
+    margin-top: 250px;
   }
 }
 .compareCard:first-child {
@@ -809,5 +911,451 @@ body {
     width: 200px;
     padding: 10px;
     font-weight: 500;
+    cursor: pointer;
+  }
+}
+
+.about {
+  font-size: 27px;
+  font-weight: 500;
+  color: black;
+  margin-top: 50px;
+  margin-bottom: 40px;
+
+  @media screen and (pointer: coarse) {
+    margin-top: 300px;
+    font-size: 3.5vh;
+    margin-left: 4vw;
+    margin-right: 4vw;
+    width: 150%;
+  }
+}
+
+.aboutBlock {
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: 1220px) {
+    transform: scale(0.85);
+    margin-top: -50px;
+  }
+  @media (max-width: 1040px) {
+    display: block;
+  }
+  @media screen and (pointer: coarse) {
+  }
+}
+
+.aboutCards {
+  width: 529px;
+  display: grid;
+  margin-top: 40px;
+  grid-template-columns: repeat(2, 265px);
+  grid-template-rows: repeat(2, 190px);
+  gap: 30px;
+  @media (max-width: 1040px) {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  @media screen and (pointer: coarse) {
+    display: flex;
+    overflow-x: scroll;
+    width: 110%;
+    height: 590px;
+    padding: 10px 300px 90px;
+  }
+}
+
+.aboutCard {
+  border-radius: 10px;
+  padding: 0px 30px 10px 30px;
+  box-shadow: 0px 0px 15px LightGrey;
+  background-color: white;
+  @media (max-width: 1130px) and (pointer: coarse) {
+    transform: scale(2.3);
+    width: 305px;
+    height: 270px;
+    margin-top: 100px;
+    position: relative;
+    left: -100px;
+    top: 100px;
+    margin-left: 220px;
+  }
+
+  .aboutCardImage {
+    margin-top: 15px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 70px;
+    width: auto;
+  }
+  .aboutCardTitle {
+    margin-top: 20px;
+    font-weight: 500;
+  }
+  .aboutCardText {
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+}
+
+.aboutFeedbacks {
+  width: 529px;
+  margin-left: 57px;
+  border-radius: 10px;
+  padding: 0px 30px 10px 30px;
+  box-shadow: 0px 0px 15px LightGrey;
+  background-color: white;
+  height: 400px;
+  position: relative;
+  top: 40px;
+  overflow: hidden;
+  flex-shrink: 0;
+  @media (max-width: 1040px) {
+    margin-left: 0px;
+    box-shadow: 0px 0px 0px LightGrey;
+    width: 100%;
+    overflow: visible;
+    height: auto;
+  }
+
+  .aboutFeedbacksStr {
+    font-size: 30px;
+    font-weight: 500;
+    margin-top: 30px;
+    @media (max-width: 1040px) {
+      margin-left: -10%;
+    }
+    @media (max-width: 1130px) and (pointer: coarse) {
+      font-size: 40px;
+    }
+  }
+  .aboutFeedbacksSlider {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    @media (max-width: 1040px) {
+      position: relative;
+      width: 100%;
+      justify-content: space-evenly;
+    }
+    @media (max-width: 1130px) and (pointer: coarse) {
+      transform: scale(2) translateX(21%);
+      margin-top: 100px;
+    }
+  }
+  .aboutFeedbacksSliderArrow1 {
+    width: 20px;
+    padding: 10px;
+    background-color: rgb(232, 232, 232);
+    height: auto;
+    border-radius: 50px;
+    z-index: 2;
+    cursor: pointer;
+  }
+  .aboutFeedbacksSliderArrow2 {
+    transform: rotate(180deg);
+    position: relative;
+    left: -60px;
+  }
+  .aboutFeedbacksSliderImage {
+    width: 520px;
+    position: relative;
+    left: -60px;
+    height: auto;
+    transition: all 0.7s ease;
+    @media (max-width: 1040px) {
+      width: 90%;
+    }
+    @media (max-width: 1130px) and (pointer: coarse) {
+      position: relative;
+      left: -30px;
+    }
+  }
+
+  .aboutFeedbacksSliderReview {
+    @media (min-width: 1040px) {
+      display: none;
+    }
+    .aboutFeedbacksSliderReviewImage {
+    }
+    .aboutFeedbacksSliderReviewText {
+    }
+    .aboutFeedbacksSliderReviewName {
+    }
+  }
+}
+
+.aboutFeedbacksButton {
+  margin: 10px auto 10px;
+  width: 150px;
+  background-color: #ef3124;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-weight: 500;
+  border-radius: 10px;
+  @media (min-width: 1040px) {
+    display: none;
+  }
+  @media (max-width: 1130px) and (pointer: coarse) {
+    position: relative;
+    left: 50%;
+    transform: translateX(-45%);
+  }
+}
+
+.contacts {
+  font-size: 27px;
+  font-weight: 500;
+  color: black;
+  margin-top: 50px;
+  margin-bottom: 40px;
+
+  @media screen and (pointer: coarse) {
+    margin-top: 60px;
+    font-size: 3.5vh;
+    margin-left: 4vw;
+    margin-right: 4vw;
+  }
+}
+
+.contactsBl {
+  display: flex;
+  justify-content: space-between;
+  @media (max-width: 1240px) {
+    display: block;
+  }
+  @media screen and (pointer: coarse) {
+    transform: scale(1.1) translateX(8%);
+    margin-bottom: 90px;
+  }
+
+  .contactReq {
+    width: 520px;
+    height: 230px;
+    padding: 25px 30px;
+    background-color: #7389de;
+    color: white;
+    border-radius: 15px;
+    @media (max-width: 1240px) {
+      margin: auto;
+      width: 490px;
+    }
+
+    .contactReqTitle {
+      font-size: 25px;
+      font-weight: 600;
+    }
+    .contactReqText {
+      font-weight: 500;
+      font-size: 13px;
+      margin-top: 20px;
+    }
+    .contactReqWrite {
+      font-size: 14px;
+      margin-top: 50px;
+      font-weight: 600;
+    }
+    .contactReqNum {
+      display: flex;
+      margin-top: 25px;
+      .contactReqNumInpDiv {
+        width: 50%;
+      }
+      .contactReqNumInp {
+        background-color: white;
+        width: 190%;
+        input {
+          font-size: 17px;
+          border: 0px solid black;
+        }
+        padding: 20px 10px;
+        border-radius: 10px;
+      }
+      .contactReqNumSend {
+        width: 170px;
+        margin-left: 45px;
+        padding: 14px 10px;
+        margin-top: 6px;
+        height: 20px;
+        border-radius: 10px;
+        background-color: #ef3124;
+        text-align: center;
+        flex-shrink: 0;
+        font-weight: 500;
+        cursor: pointer;
+      }
+    }
+  }
+  .contactInfo {
+    width: 540px;
+    @media (max-width: 1240px) {
+      margin: auto;
+      margin-top: 40px;
+      width: 530px;
+      position: relative;
+      left: -10px;
+    }
+
+    .contactInfoCard {
+      width: 100%;
+      height: 52px;
+      box-shadow: 0px 0px 15px LightGrey;
+      padding: 10px 0px;
+      margin-bottom: 30px;
+      border-radius: 10px;
+      padding-left: 20px;
+      .contactInfoCardTitle {
+        font-size: 14px;
+        font-weight: 500;
+        color: #0f1633;
+      }
+      .contactInfoCardText {
+        color: #7389de;
+        font-size: 21px;
+        font-weight: 600;
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+.contactInfo:first-child {
+  margin-top: 0px;
+  background-color: black;
+}
+
+.footer {
+  padding: 80px 0px;
+  color: white;
+  background-color: #131029;
+  width: 102%;
+  position: relative;
+  left: -1%;
+  transform: translateY(10px);
+  @media screen and (pointer: coarse) {
+    position: absolute;
+    width: 173%;
+    transform: translateY(6px);
+  }
+
+  .footerBlocks {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    @media (max-width: 620px) {
+      display: block;
+    }
+
+    .footerBl {
+      display: flex;
+      justify-content: space-between;
+      @media (max-width: 1100px) {
+        display: block;
+      }
+
+      .footerCol {
+        width: 250px;
+        height: 200px;
+        @media (max-width: 620px) {
+          display: block;
+          margin: auto;
+        }
+
+        .footerColTitle {
+          color: #525252;
+          font-size: 17px;
+          font-weight: 500;
+        }
+        .footerColText {
+          margin-top: 20px;
+          font-size: 14px;
+          cursor: pointer;
+        }
+        .footerColConn {
+          margin-top: 20px;
+          display: flex;
+
+          .footerColConnTel {
+            width: 200px;
+            border-radius: 9px;
+            padding-left: 20px;
+            font-size: 17px;
+            height: 40px;
+          }
+          .footerColConnSend {
+            width: 18px;
+            margin-left: 10px;
+            padding: 15px;
+            border-radius: 9px;
+            background-color: #ef3124;
+            height: auto;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+  .footerUnder {
+    font-size: 12px;
+    color: #525252;
+    margin-left: 70px;
+    margin-top: 50px;
+  }
+}
+
+.questFormInput {
+  width: 100%;
+  border-radius: 7px;
+  height: 50px;
+  font-size: 17px;
+  padding-left: 10px;
+  margin-top: 20px;
+}
+.questFormSend {
+  width: 100%;
+  border-radius: 7px;
+  height: 50px;
+  font-size: 17px;
+  padding-left: 10px;
+  margin-top: 20px;
+  background-color: #ef3124;
+  color: white;
+  border: 0px solid white;
+}
+.questFormTitle {
+  font-size: 20px;
+  margin-top: 30px;
+  margin-bottom: -10px;
+}
+.questFormPlusminusInp {
+  width: 50px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid gainsboro;
+  text-align: center;
+}
+.questFormUnder {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 20px;
+}
+.questFormTel {
+  width: 100%;
+  border-radius: 7px;
+  height: 50px;
+  font-size: 17px;
+  padding-left: 10px;
+  margin-top: 20px;
+  border: 1px solid gainsboro;
+  font-size: 17px;
+
+  input {
+    border: 0px solid white;
+    font-size: 17px;
   }
 }
