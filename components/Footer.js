@@ -1,8 +1,10 @@
 import sendImg from "../public/send.png"
 import Image from "next/image"
+import { useRef } from "react"
 import Link from "next/link"
 
 export default function Footer(props) {
+  const phone2Ref = useRef()
   function scrollTo(ref) {
     ref.current.scrollIntoView({ behavior: "smooth" })
   }
@@ -80,7 +82,11 @@ export default function Footer(props) {
           <div className="footerCol">
             <div className="footerColTitle">ОБРАТНАЯ СВЯЗЬ</div>
             <div className="footerColConn">
-              <input className="footerColConnTel" placeholder="Телефон" />
+              <input
+                className="footerColConnTel"
+                placeholder="Телефон"
+                ref={phone2Ref}
+              />
               <Image src={sendImg} className="footerColConnSend" />
             </div>
           </div>

@@ -1,21 +1,18 @@
 import { useEffect, useState, useRef } from "react"
-import Button from "@mui/material/Button"
 import Link from "next/link"
+import { parsePhoneNumber } from "libphonenumber-js"
 import { Typography, FormControl } from "@mui/material"
 import TextField from "@mui/material/TextField"
 import Dialog from "@mui/material/Dialog"
-import DialogActions from "@mui/material/DialogActions"
 import DialogContent from "@mui/material/DialogContent"
 import DialogTitle from "@mui/material/DialogTitle"
-import InputLabel from "@mui/material/InputLabel"
-import MenuItem from "@mui/material/MenuItem"
-import Select from "@mui/material/Select"
 import "react-phone-number-input/style.css"
 import PhoneInput from "react-phone-number-input"
-import { Copse, Inter } from "next/font/google"
+import { Inter } from "next/font/google"
 import Image from "next/image"
 import Head from "next/head"
 import checkGeo from "../helpers/check_geo"
+import determineCity from "../helpers/determine_city"
 import mainImg from "../public/main.png"
 import searchImg from "../public/search.png"
 import man1Img from "../public/man1.png"
@@ -38,6 +35,7 @@ import feedback2Img from "../public/feedback2.png"
 import feedback3Img from "../public/feedback3.png"
 import feedback4Img from "../public/feedback4.png"
 import Footer from "../components/Footer"
+import $ from "jquery"
 import "@/styles/index.module.scss"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -47,6 +45,7 @@ const slider2Images = [feedback1Img, feedback2Img, feedback3Img]
 export default function Home() {
   const [geo, setGeo] = useState(null)
   const [coords, setCoords] = useState(null)
+  const [city, setCity] = useState(null)
   const [selectedServiceCard, setSelectedServiceCard] = useState(0)
   const [mobile, setMobile] = useState(false)
   const [openedQuestForm, setOpenedQuestForm] = useState(false)
@@ -59,6 +58,7 @@ export default function Home() {
   const calcRef = useRef()
   const compareRef = useRef()
   const aboutRef = useRef()
+  const phone1Ref = useRef()
   useEffect(() => {
     checkGeoFunc()
     //check geo
@@ -73,10 +73,13 @@ export default function Home() {
   }, [])
   async function checkGeoFunc() {
     const geoLocation = await checkGeo()
-    setGeo(geoLocation[2] | null)
-    console.log(geoLocation[2])
-    console.log(geo)
+    setGeo(geoLocation[2] || null)
+    console.log(geoLocation)
     setCoords(geoLocation[0] ? [geoLocation[0], geoLocation[1]] : null)
+    if (geoLocation[0]) {
+      const determinedCity = determineCity(geoLocation[0], geoLocation[1])
+      setCity(determinedCity)
+    }
   }
   function changeSliderPic(next) {
     if (next) {
@@ -103,6 +106,32 @@ export default function Home() {
     slideValue.textContent = value
     slideValue.style.left = value + "%"
     slideValue.style.transform = "translateX(-75%) scale(1)"
+  }
+  function sendCalcForm(e) {
+    e.preventDefault()
+    const body = {
+      lat: "null",
+      lng: "null",
+      city: "Moscow",
+      name: "null",
+      address: "null",
+      typeObject: "null",
+      square: "null",
+      countRoom: "2",
+      phone: "891119191919",
+    }
+    console.log(body)
+  }
+  function sendPhoneForm1() {
+    console.log($(phone1Ref.current).val())
+    const phoneNumber = $(phone1Ref.current).val()
+    if (!phoneNumber.isValid()) {
+      console.log("Номер телефона валиден")
+      alert("Введите корректный номер телефона")
+      return 0
+    } else {
+    }
+    console.log(phoneNumber)
   }
   return (
     <>
@@ -165,7 +194,11 @@ export default function Home() {
                 >
                   -
                 </div>
-                <input type="number" className="questFormPlusminusInp" />
+                <input
+                  type="number"
+                  className="questFormPlusminusInp"
+                  defaultValue={2}
+                />
                 <div
                   style={{
                     margin: "0px 10px",
@@ -401,7 +434,13 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <form className="calc" action="" method="post" ref={calcRef}>
+          <form
+            className="calc"
+            action=""
+            method="post"
+            ref={calcRef}
+            onSubmit={sendCalcForm}
+          >
             <div className="calcTitle">Онлайн — калькулятор</div>
             <select className="calcSelect" name="object">
               <option>Вид объекта</option>
@@ -565,7 +604,7 @@ export default function Home() {
             <div
               className="compareCardButton"
               onClick={() => {
-                setQuestFormType(true)
+                setOpenedQuestForm(true)
               }}
             >
               ОСТАВИТЬ ЗАЯВКУ
@@ -606,7 +645,7 @@ export default function Home() {
             <div
               className="compareCardButton"
               onClick={() => {
-                setQuestFormType(true)
+                setOpenedQuestForm(true)
               }}
             >
               ПОЛУЧИТЬ АВАНС
@@ -645,7 +684,7 @@ export default function Home() {
             <div
               className="compareCardButton"
               onClick={() => {
-                setQuestFormType(true)
+                setOpenedQuestForm(true)
               }}
             >
               УЗНАТЬ СТОИМОСТЬ
@@ -701,7 +740,10 @@ export default function Home() {
                 className="aboutFeedbacksSliderImage"
                 src={sliderImages[sliderIndex]}
               />
-              <div className="aboutFeedbacksSliderReview">
+              <div
+                className="aboutFeedbacksSliderReview"
+                style={{ display: "none" }}
+              >
                 <Image className="aboutFeedbacksSliderReviewImage" />
                 <div className="aboutFeedbacksSliderReviewText"></div>
                 <div className="aboutFeedbacksSliderReviewName"></div>
@@ -736,9 +778,12 @@ export default function Home() {
                   className="contactReqNumInp"
                   limitMaxLength={10}
                   international
+                  ref={phone1Ref}
                 />
               </div>
-              <div className="contactReqNumSend">ОТПРАВИТЬ</div>
+              <div className="contactReqNumSend" onClick={sendPhoneForm1}>
+                ОТПРАВИТЬ
+              </div>
             </div>
           </div>
           <div className="contactInfo">
