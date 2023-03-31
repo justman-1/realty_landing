@@ -6,6 +6,7 @@ import TextField from "@mui/material/TextField"
 import Dialog from "@mui/material/Dialog"
 import DialogContent from "@mui/material/DialogContent"
 import DialogTitle from "@mui/material/DialogTitle"
+import CircularProgress from "@mui/material/CircularProgress"
 import "react-phone-number-input/style.css"
 import PhoneInput from "react-phone-number-input"
 import { Inter } from "next/font/google"
@@ -30,12 +31,14 @@ import starImg from "../public/star.png"
 import laptopImg from "../public/laptop.png"
 import notebookImg from "../public/notebook.png"
 import arrowImg from "../public/arrow.png"
+import okImg from "../public/ok.png"
 import feedback1Img from "../public/feedback1.png"
 import feedback2Img from "../public/feedback2.png"
 import feedback3Img from "../public/feedback3.png"
 import feedback4Img from "../public/feedback4.png"
 import Footer from "../components/Footer"
 import $ from "jquery"
+import Axios from "../helpers/axios"
 import "@/styles/index.module.scss"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -54,6 +57,8 @@ export default function Home() {
   const [slider2Index, setSlider2Index] = useState(0)
   const [phoneContacts, setPhoneContacts] = useState()
   const [phoneCalc, setPhoneCalc] = useState()
+  const [dataAdded, setDataAdded] = useState(false)
+  const [sendingNumber, setSendingNumber] = useState(false)
   const realtySailRef = useRef()
   const calcRef = useRef()
   const compareRef = useRef()
@@ -122,16 +127,38 @@ export default function Home() {
     }
     console.log(body)
   }
-  function sendPhoneForm1() {
-    console.log($(phone1Ref.current).val())
-    const phoneNumber = $(phone1Ref.current).val()
-    if (!phoneNumber.isValid()) {
-      console.log("Номер телефона валиден")
-      alert("Введите корректный номер телефона")
+  async function sendPhoneForm1() {
+    if (sendingNumber) {
       return 0
-    } else {
     }
-    console.log(phoneNumber)
+    setSendingNumber(true)
+    try {
+      console.log($(phone1Ref.current).val())
+      const phoneNumber = parsePhoneNumber($(phone1Ref.current).val())
+      if (phoneNumber.isValid()) {
+        const body = {
+          city: city ? city : "null",
+          lat: coords ? coords[0].toString() : "null",
+          lng: coords ? coords[1].toString() : "null",
+          phone: phoneNumber.number.toString(),
+        }
+        const [err, data] = await Axios.sendPhone(body)
+        if (err) {
+          setSendingNumber(false)
+          alert("Произошла ошибка во время отправки формы")
+        }
+        if (data) {
+          setDataAdded(true)
+        }
+        return 0
+      } else {
+        alert("Введите корректный номер телефона")
+      }
+      console.log(phoneNumber)
+    } catch (err) {
+      alert("Введите корректный номер телефона")
+    }
+    setSendingNumber(false)
   }
   return (
     <>
@@ -236,6 +263,22 @@ export default function Home() {
               обработку персональных данных
             </div>
           </DialogContent>
+        </Dialog>
+
+        <Dialog
+          open={dataAdded}
+          onClose={() => {
+            setDataAdded(false)
+          }}
+        >
+          <Image
+            src={okImg}
+            className="okImg"
+            style={{ width: "50px", height: "50px", margin: " 20px auto" }}
+          />
+          <Typography gutterBottom textAlign="center" padding=" 0px 20px 10px">
+            Спасибо! Данные успешно <br /> отправлены.
+          </Typography>
         </Dialog>
         <header className="headerMain">
           <div className="headerMainTitle">
@@ -782,7 +825,14 @@ export default function Home() {
                 />
               </div>
               <div className="contactReqNumSend" onClick={sendPhoneForm1}>
-                ОТПРАВИТЬ
+                <span style={{ display: sendingNumber ? "none" : "block" }}>
+                  ОТПРАВИТЬ
+                </span>
+                <CircularProgress
+                  color="inherit"
+                  className="contactReqNumSendLoad"
+                  style={{ display: sendingNumber ? "inline-block" : "none" }}
+                />
               </div>
             </div>
           </div>
@@ -806,7 +856,13 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Footer calcRef={calcRef} compareRef={compareRef} aboutRef={aboutRef} />
+      <Footer
+        calcRef={calcRef}
+        compareRef={compareRef}
+        aboutRef={aboutRef}
+        coords={coords}
+        city={city}
+      />
     </>
   )
 }

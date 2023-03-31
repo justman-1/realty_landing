@@ -1,12 +1,54 @@
 import sendImg from "../public/send.png"
 import Image from "next/image"
-import { useRef } from "react"
+import { useRef, useState } from "react"
+import { parsePhoneNumber } from "libphonenumber-js"
+import Axios from "../helpers/axios"
+import $ from "jquery"
 import Link from "next/link"
+import PhoneInput from "react-phone-number-input"
 
 export default function Footer(props) {
   const phone2Ref = useRef()
+  const [sendingNumber, setSendingNumber] = useState(false)
+  const [phoneContacts, setPhoneContacts] = useState()
   function scrollTo(ref) {
     ref.current.scrollIntoView({ behavior: "smooth" })
+  }
+  async function sendPhoneForm2() {
+    console.log($(phone2Ref.current).val())
+    if (sendingNumber) {
+      return 0
+    }
+    setSendingNumber(true)
+    try {
+      console.log($(phone2Ref.current).val())
+      const phoneNumber = parsePhoneNumber($(phone2Ref.current).val())
+      console.log(phoneNumber.isValid())
+      if (phoneNumber.isValid()) {
+        const body = {
+          city: props.city ? props.city : "null",
+          lat: props.coords ? props.coords[0].toString() : "null",
+          lng: props.coords ? props.coords[1].toString() : "null",
+          phone: phoneNumber.number.toString(),
+        }
+        const [err, data] = await Axios.sendPhone(body)
+        if (err) {
+          setSendingNumber(false)
+          alert("Произошла ошибка во время отправки формы")
+        }
+        if (data) {
+          setDataAdded(true)
+        }
+        return 0
+      } else {
+        alert("Введите корректный номер телефона")
+      }
+      console.log(phoneNumber)
+    } catch (err) {
+      console.log(err)
+      alert("Введите корректный номер телефона")
+    }
+    setSendingNumber(false)
   }
   return (
     <footer className="footer">
@@ -82,12 +124,21 @@ export default function Footer(props) {
           <div className="footerCol">
             <div className="footerColTitle">ОБРАТНАЯ СВЯЗЬ</div>
             <div className="footerColConn">
-              <input
-                className="footerColConnTel"
+              <PhoneInput
                 placeholder="Телефон"
+                defaultCountry="RU"
+                value={phoneContacts}
+                onChange={setPhoneContacts}
+                className="footerColConnTel"
+                limitMaxLength={10}
+                international
                 ref={phone2Ref}
               />
-              <Image src={sendImg} className="footerColConnSend" />
+              <Image
+                src={sendImg}
+                className="footerColConnSend"
+                onClick={sendPhoneForm2}
+              />
             </div>
           </div>
         </div>
