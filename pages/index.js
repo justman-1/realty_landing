@@ -32,6 +32,7 @@ import laptopImg from "../public/laptop.png"
 import notebookImg from "../public/notebook.png"
 import arrowImg from "../public/arrow.png"
 import okImg from "../public/ok.png"
+import crossImg from "../public/cross.svg"
 import feedback1Img from "../public/feedback1.png"
 import feedback2Img from "../public/feedback2.png"
 import feedback3Img from "../public/feedback3.png"
@@ -39,6 +40,7 @@ import feedback4Img from "../public/feedback4.png"
 import Footer from "../components/Footer"
 import $ from "jquery"
 import Axios from "../helpers/axios"
+import reviews from "../helpers/reviews"
 import "@/styles/index.module.scss"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -53,8 +55,13 @@ export default function Home() {
   const [mobile, setMobile] = useState(false)
   const [openedQuestForm, setOpenedQuestForm] = useState(false)
   const [questFormType, setQuestFormType] = useState("Квартира")
+  const [questFormTitle, setQuestFormTitle] = useState("Остались вопросы?")
+  const [questFormText, setQuestFormText] =
+    useState(`Отправьте форму или позвоните нам и вы узнайте как продать
+  квартиру безопасно и выгодно, как быстрее подготовить документы
+  для продажи и на какие цены можно ориентироваться.`)
   const [sliderIndex, setSliderIndex] = useState(0)
-  const [slider2Index, setSlider2Index] = useState(0)
+  const [reviewsIndex, setReviewsIndex] = useState(0)
   const [phoneContacts, setPhoneContacts] = useState()
   const [phoneCalc, setPhoneCalc] = useState()
   const [dataAdded, setDataAdded] = useState(false)
@@ -64,6 +71,7 @@ export default function Home() {
   const compareRef = useRef()
   const aboutRef = useRef()
   const phone1Ref = useRef()
+  const reviewsBlRef = useRef()
   useEffect(() => {
     checkGeoFunc()
     //check geo
@@ -73,6 +81,10 @@ export default function Home() {
     setSelectedServiceCard(isMobile ? 0 : -1)
     //check is user from phone
     setTimeout(() => {
+      setQuestFormTitle("Остались вопросы?")
+      setQuestFormText(`Отправьте форму или позвоните нам и вы узнайте как продать
+      квартиру безопасно и выгодно, как быстрее подготовить документы
+      для продажи и на какие цены можно ориентироваться.`)
       setOpenedQuestForm(true)
     }, 15000)
   }, [])
@@ -87,6 +99,17 @@ export default function Home() {
     }
   }
   function changeSliderPic(next) {
+    const reviewBlDisplay = $(".aboutFeedbacksSliderReview").css("display")
+    if (reviewBlDisplay != "none") {
+      reviewsBlRef.current.style.opacity = 0
+      setTimeout(() => {
+        changeReviewsIndex(next)
+      }, 200)
+      setTimeout(() => {
+        reviewsBlRef.current.style.opacity = 1
+      }, 300)
+      return 0
+    }
     if (next) {
       if (sliderIndex + 1 == sliderImages.length) {
         setSliderIndex(0)
@@ -101,8 +124,39 @@ export default function Home() {
       }
     }
   }
+  function changeReviewsIndex(next) {
+    if (next) {
+      if (reviewsIndex + 1 == reviews.length) {
+        setReviewsIndex(0)
+      } else {
+        setReviewsIndex(reviewsIndex + 1)
+      }
+    } else {
+      if (reviewsIndex == 0) {
+        setReviewsIndex(reviews.length - 1)
+      } else {
+        setReviewsIndex(reviewsIndex - 1)
+      }
+    }
+  }
   function scrollTo(ref) {
     ref.current.scrollIntoView({ behavior: "smooth" })
+  }
+  function openQuestForm(index) {
+    if (index == 1) {
+      setQuestFormTitle("Заявка на выкуп квартиры")
+      setQuestFormText(`Оставьте данные о квартире, наш менеджер составит для
+       Вас индивидуальное предложение`)
+    } else if (index == 2) {
+      setQuestFormTitle("Получить аванс")
+      setQuestFormText(`Выдаем аванс до 300 000 рублей в день обращения. Оставьте
+       данные о своей квартире, наш менеджер подготовит
+        индивидуальное предложение для Вас`)
+    } else if (index == 3) {
+      setQuestFormTitle("Заявка на продажу квартиры")
+      setQuestFormText(`Оценим вашу недвижимость и предложим лучшую цену`)
+    }
+    setOpenedQuestForm(true)
   }
   function rangeChange() {
     const slideValue = document.querySelector(".calcRangeValue span")
@@ -168,7 +222,7 @@ export default function Home() {
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
           <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&family=Roboto:wght@300;400;500&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&family=Roboto:wght@400;500&display=swap"
             rel="stylesheet"
           />
           <link rel="icon" type="image/png" href="/favicon.png" />
@@ -179,15 +233,25 @@ export default function Home() {
             setOpenedQuestForm(false)
           }}
           aria-labelledby="form-dialog-title"
+          fullWidth
+          maxWidth="xs"
+          width="500px"
         >
-          <DialogTitle style={{ textAlign: "center" }}>
-            Остались вопросы?
+          <Image
+            src={crossImg}
+            className="questFormCross"
+            onClick={() => {
+              setOpenedQuestForm(false)
+            }}
+          />
+          <DialogTitle
+            style={{ textAlign: "center", fontSize: "30px", fontWeight: "600" }}
+          >
+            {questFormTitle}
           </DialogTitle>
           <DialogContent>
             <Typography gutterBottom style={{ textAlign: "center" }}>
-              Отправьте форму или позвоните нам и вы узнайте как продать
-              квартиру безопасно и выгодно, как быстрее подготовить документы
-              для продажи и на какие цены можно ориентироваться.
+              {questFormText}
             </Typography>
             <form noValidate autoComplete="off">
               <div className="questFormTitle">Тип недвижимости</div>
@@ -647,7 +711,7 @@ export default function Home() {
             <div
               className="compareCardButton"
               onClick={() => {
-                setOpenedQuestForm(true)
+                openQuestForm(1)
               }}
             >
               ОСТАВИТЬ ЗАЯВКУ
@@ -688,7 +752,7 @@ export default function Home() {
             <div
               className="compareCardButton"
               onClick={() => {
-                setOpenedQuestForm(true)
+                openQuestForm(2)
               }}
             >
               ПОЛУЧИТЬ АВАНС
@@ -727,7 +791,7 @@ export default function Home() {
             <div
               className="compareCardButton"
               onClick={() => {
-                setOpenedQuestForm(true)
+                openQuestForm(3)
               }}
             >
               УЗНАТЬ СТОИМОСТЬ
@@ -783,16 +847,22 @@ export default function Home() {
                 className="aboutFeedbacksSliderImage"
                 src={sliderImages[sliderIndex]}
               />
-              <div
-                className="aboutFeedbacksSliderReview"
-                style={{ display: "none" }}
-              >
-                <Image className="aboutFeedbacksSliderReviewImage" />
-                <div className="aboutFeedbacksSliderReviewText"></div>
-                <div className="aboutFeedbacksSliderReviewName"></div>
+              <div className="aboutFeedbacksSliderReview" ref={reviewsBlRef}>
+                <img
+                  className="aboutFeedbacksSliderReviewImage"
+                  src={reviews[reviewsIndex].img}
+                />
+                <div className="aboutFeedbacksSliderReviewTextBl">
+                  <div className="aboutFeedbacksSliderReviewText">
+                    {reviews[reviewsIndex].text}
+                  </div>
+                  <div className="aboutFeedbacksSliderReviewName">
+                    {reviews[reviewsIndex].name}
+                  </div>
+                </div>
               </div>
               <Image
-                className="aboutFeedbacksSliderArrow1 aboutFeedbacksSliderArrow2"
+                className="aboutFeedbacksSliderArrow2"
                 onClick={() => {
                   changeSliderPic(true)
                 }}

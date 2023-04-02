@@ -1,5 +1,5 @@
 body {
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: "Roboto", sans-serif;
   color: #0b1f35;
   overflow-x: hidden;
 }
@@ -9,6 +9,12 @@ body {
 }
 input {
   outline: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 a {
   text-decoration: none;
@@ -38,7 +44,7 @@ a {
   width: 1000px;
   max-width: 1000px;
   position: relative;
-  top: -100px;
+  top: -150px;
   margin-right: -420px;
   aspect-ratio: 1 / 1;
   border-width: 10px;
@@ -53,7 +59,7 @@ a {
   @media (min-width: 1200px) {
     transform: translateX(-40px);
   }
-  @media (max-width: 960px) {
+  @media (max-width: 1040px) {
     transform: scale(0.74) translate(150px, -100px);
   }
   @media (max-width: 750px) {
@@ -186,8 +192,9 @@ a {
       cursor: pointer;
 
       @media (min-width: 1200px) {
-        width: 200px;
-        font-size: 16px;
+        padding-top: 6px;
+        width: 180px;
+        font-size: 14px;
       }
     }
     .headerMainRightConn {
@@ -202,8 +209,9 @@ a {
       cursor: pointer;
 
       @media (min-width: 1200px) {
-        width: 140px;
-        font-size: 16px;
+        padding-top: 5px;
+        width: 115px;
+        font-size: 14px;
       }
     }
   }
@@ -235,7 +243,7 @@ a {
 .block1Cities {
   display: flex;
   position: absolute;
-  top: 800px;
+  top: 730px;
   font-weight: 500;
 
   @media (max-width: 960px) {
@@ -331,10 +339,10 @@ a {
 }
 
 .withWorkCard {
+  transition: all 0.3s ease;
   width: 260px;
   padding: 20px 0px 0px 20px;
   border-radius: 10px;
-  box-shadow: 0px 10px 10px LightGrey;
   display: flex;
   background-color: white;
 
@@ -351,11 +359,22 @@ a {
     }
   }
   .withWorkCardImg1 {
+    transition: all 0.3s ease;
+    opacity: 0;
     width: 60px;
     height: 130px;
   }
   .withWorkCardImg2 {
     display: none;
+  }
+  @media (min-width: 1200px) {
+    &:hover {
+      box-shadow: 0px 0px 15px LightGrey;
+      .withWorkCardImg1 {
+        opacity: 1;
+      }
+      z-index: 1000;
+    }
   }
 
   @media (max-width: 1200px) {
@@ -504,6 +523,11 @@ a {
     margin-right: 4vw;
     position: relative;
     top: 700px;
+  }
+  @media (max-width: 1130px) {
+    position: relative;
+    left: 50%;
+    transform: translateX(-53%);
   }
 
   .realtySailCard {
@@ -1055,11 +1079,28 @@ a {
     border-radius: 50px;
     z-index: 2;
     cursor: pointer;
+    @media (max-width: 1040px) {
+      position: absolute;
+      left: -70px;
+    }
   }
   .aboutFeedbacksSliderArrow2 {
+    width: 20px;
+    padding: 10px;
+    background-color: rgb(232, 232, 232);
+    height: auto;
+    border-radius: 50px;
+    z-index: 2;
+    cursor: pointer;
     transform: rotate(180deg);
     position: relative;
-    left: -60px;
+    @media (min-width: 1040px) {
+      left: -60px;
+    }
+    @media (max-width: 1040px) {
+      position: absolute;
+      right: -10px;
+    }
   }
   .aboutFeedbacksSliderImage {
     width: 520px;
@@ -1068,6 +1109,7 @@ a {
     height: auto;
     transition: all 0.7s ease;
     @media (max-width: 1040px) {
+      display: none;
       width: 90%;
     }
     @media (max-width: 1130px) and (pointer: coarse) {
@@ -1077,14 +1119,45 @@ a {
   }
 
   .aboutFeedbacksSliderReview {
-    @media (min-width: 1040px) {
-      display: none;
-    }
-    .aboutFeedbacksSliderReviewImage {
-    }
-    .aboutFeedbacksSliderReviewText {
-    }
-    .aboutFeedbacksSliderReviewName {
+    display: none;
+    @media (max-width: 1040px) {
+      width: 600px;
+      position: relative;
+      left: -30px;
+      margin: 0px 10px;
+      display: flex;
+      transition: all 0.3s ease;
+      .aboutFeedbacksSliderReviewImage {
+        width: 100px;
+        height: 100px;
+        border-radius: 100px;
+        flex-shrink: 0;
+      }
+      .aboutFeedbacksSliderReviewTextBl {
+        margin-left: 20px;
+        .aboutFeedbacksSliderReviewText {
+          line-height: 1.4;
+          font-size: 23px;
+        }
+        .aboutFeedbacksSliderReviewName {
+          font-weight: 600;
+          margin-top: 30px;
+        }
+      }
+      @media (max-width: 650px) {
+        display: block;
+        .aboutFeedbacksSliderReviewTextBl {
+          margin-top: 20px;
+          margin-left: 0px;
+          .aboutFeedbacksSliderReviewText {
+            line-height: 1.3;
+            font-size: 20px;
+          }
+          .aboutFeedbacksSliderReviewName {
+            font-size: 14px;
+          }
+        }
+      }
     }
   }
 }
@@ -1178,9 +1251,9 @@ a {
       }
       .contactReqNumSend {
         width: 170px;
-        margin-left: 45px;
+        margin-left: 55px;
         padding: 14px 10px;
-        margin-top: 6px;
+        margin-top: 6.5px;
         height: 20px;
         border-radius: 10px;
         background-color: #ef3124;
@@ -1190,6 +1263,10 @@ a {
         display: flex;
         cursor: pointer;
         justify-content: center;
+
+        @media (max-width: 1240px) {
+          margin-left: 43px;
+        }
 
         .contactReqNumSendLoad {
           position: relative;
@@ -1322,6 +1399,19 @@ a {
   }
 }
 
+.questFormCross {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 35px;
+  height: auto;
+  filter: invert(1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    filter: invert(0.9);
+  }
+}
 .questFormInput {
   width: 100%;
   border-radius: 7px;
