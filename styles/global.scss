@@ -1497,12 +1497,11 @@ a {
   background-color: #131029;
   width: 102%;
   position: relative;
-  left: -1%;
   transform: translateY(10px);
   @media screen and (pointer: coarse) {
     position: absolute;
     width: 174%;
-    transform: translateX(1px);
+    transform: translateX(-8px);
   }
 
   .footerBlocks {
@@ -1658,8 +1657,8 @@ a {
 }
 .questFormText {
   text-align: center;
-  @media screen and (pointer: coarse) {
-    font-size: 20px;
+  @media (pointer: coarse) {
+    font-size: 25px;
   }
 }
 
@@ -1671,7 +1670,7 @@ a {
   padding-left: 10px;
   margin-top: 20px;
   border: 1px solid gainsboro;
-  @media screen and (pointer: coarse) {
+  @media (pointer: coarse) {
     font-size: 30px;
     height: 90px;
     border-radius: 15px;
