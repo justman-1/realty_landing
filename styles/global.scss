@@ -1497,11 +1497,12 @@ a {
   background-color: #131029;
   width: 102%;
   position: relative;
+  left: -1%;
   transform: translateY(10px);
   @media screen and (pointer: coarse) {
     position: absolute;
     width: 174%;
-    transform: translateX(-8px);
+    transform: translateX(1px);
   }
 
   .footerBlocks {
