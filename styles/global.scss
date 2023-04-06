@@ -792,14 +792,20 @@ a {
 
 .services {
   font-size: 30px;
-  margin-top: 360px;
+  margin-top: 40px;
   font-weight: 500;
+  margin-bottom: 30px;
+  @media (max-width: 1130px) and (pointer: coarse) {
+    font-size: 30px;
+    margin-top: 360px;
+    font-weight: 500;
+  }
 }
 
 .servicesCards {
   width: 100%;
   display: grid;
-  margin-top: 40px;
+  margin-top: 0px;
   grid-template-columns: repeat(4, 265px);
   grid-template-rows: repeat(1, 190px);
   gap: 30px;
