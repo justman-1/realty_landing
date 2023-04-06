@@ -7,6 +7,8 @@ import Dialog from "@mui/material/Dialog"
 import DialogContent from "@mui/material/DialogContent"
 import DialogTitle from "@mui/material/DialogTitle"
 import CircularProgress from "@mui/material/CircularProgress"
+import useMediaQuery from "@mui/material/useMediaQuery"
+import { useTheme } from "@mui/material/styles"
 import "react-phone-number-input/style.css"
 import PhoneInput from "react-phone-number-input"
 import { Inter } from "next/font/google"
@@ -48,6 +50,8 @@ const sliderImages = [feedback1Img, feedback2Img, feedback3Img, feedback4Img]
 const slider2Images = [feedback1Img, feedback2Img, feedback3Img]
 
 export default function Home() {
+  const theme = useTheme()
+  const fullScreen = useMediaQuery(theme.breakpoints.down("md"))
   const [geo, setGeo] = useState(null)
   const [coords, setCoords] = useState(null)
   const [city, setCity] = useState(null)
@@ -220,7 +224,11 @@ export default function Home() {
         <Head>
           <title>Центр недвижимости InvestReal</title>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+          <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin="true"
+          />
           <link
             href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&family=Roboto:wght@400;500&display=swap"
             rel="stylesheet"
@@ -236,6 +244,8 @@ export default function Home() {
           fullWidth
           maxWidth="xs"
           width="500px"
+          fullScreen={fullScreen}
+          className="questPopup"
         >
           <Image
             src={crossImg}
@@ -244,13 +254,9 @@ export default function Home() {
               setOpenedQuestForm(false)
             }}
           />
-          <DialogTitle
-            style={{ textAlign: "center", fontSize: "30px", fontWeight: "600" }}
-          >
-            {questFormTitle}
-          </DialogTitle>
+          <DialogTitle className="questFormName">{questFormTitle}</DialogTitle>
           <DialogContent>
-            <Typography gutterBottom style={{ textAlign: "center" }}>
+            <Typography gutterBottom className="questFormText">
               {questFormText}
             </Typography>
             <form noValidate autoComplete="off">
@@ -303,10 +309,10 @@ export default function Home() {
                   +
                 </div>
               </div>
-              <TextField
-                label="Адрес"
+              <input
+                placeholder="Адрес"
                 style={{ marginTop: "20px" }}
-                fullWidth
+                className="questFormAddress"
               />
               <PhoneInput
                 value={phoneCalc}
@@ -507,25 +513,34 @@ export default function Home() {
             <div className="realtySailCards">
               <div className="realtySailCard">
                 <Image className="realtySailCardImage" src={likeImg} alt="" />
-                <div className="realtySailCardTitle">Честная оценка</div>
-                <div className="realtySailCardText">
-                  Используем более 30 параметров для оценки
+                <div className="realtySailCardTextBl">
+                  <div className="realtySailCardTitle">Честная оценка</div>
+                  <div className="realtySailCardText">
+                    Используем более 30 параметров для оценки
+                  </div>
                 </div>
+                <Image className="realtySailCardImage2" src={likeImg} alt="" />
               </div>
               <div className="realtySailCard">
                 <Image className="realtySailCardImage" src={clockImg} alt="" />
-                <div className="realtySailCardTitle">Скорость и простота</div>
-                <div className="realtySailCardText">
-                  Вам не нужно тратить деньги и время для оценки стоимости
-                  недвижимости
+                <div className="realtySailCardTextBl">
+                  <div className="realtySailCardTitle">Скорость и простота</div>
+                  <div className="realtySailCardText">
+                    Вам не нужно тратить деньги и время для оценки стоимости
+                    недвижимости
+                  </div>
                 </div>
+                <Image className="realtySailCardImage2" src={clockImg} alt="" />
               </div>
               <div className="realtySailCard">
                 <Image className="realtySailCardImage" src={graphImg} alt="" />
-                <div className="realtySailCardTitle">Реалистичные цены</div>
-                <div className="realtySailCardText">
-                  Онлайн — оценка показывает среднюю рыночную стоимость
+                <div className="realtySailCardTextBl">
+                  <div className="realtySailCardTitle">Реалистичные цены</div>
+                  <div className="realtySailCardText">
+                    Онлайн — оценка показывает среднюю рыночную стоимость
+                  </div>
                 </div>
+                <Image className="realtySailCardImage2" src={graphImg} alt="" />
               </div>
               <div className="realtySailCard">
                 <Image
@@ -533,11 +548,18 @@ export default function Home() {
                   src={workbookImg}
                   alt=""
                 />
-                <div className="realtySailCardTitle">Удобство</div>
-                <div className="realtySailCardText">
-                  Зная цену своей квартиры Вы сможете планировать покупку нового
-                  жилья
+                <div className="realtySailCardTextBl">
+                  <div className="realtySailCardTitle">Удобство</div>
+                  <div className="realtySailCardText">
+                    Зная цену своей квартиры Вы сможете планировать покупку
+                    нового жилья
+                  </div>
                 </div>
+                <Image
+                  className="realtySailCardImage2"
+                  src={workbookImg}
+                  alt=""
+                />
               </div>
             </div>
           </div>
@@ -558,11 +580,11 @@ export default function Home() {
             </select>
             <input className="calcInp" placeholder="Улица" name="street" />
             <div className="calcSqr">Площадь м2</div>
-            <div class="calcRangeBl">
-              <div class="calcRangeValue">
+            <div className="calcRangeBl">
+              <div className="calcRangeValue">
                 <span>60</span>
               </div>
-              <div class="calcRangeField">
+              <div className="calcRangeField">
                 <input
                   type="range"
                   min="10"

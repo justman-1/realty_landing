@@ -138,6 +138,7 @@ export default function Footer(props) {
                 src={sendImg}
                 className="footerColConnSend"
                 onClick={sendPhoneForm2}
+                alt=""
               />
             </div>
           </div>
